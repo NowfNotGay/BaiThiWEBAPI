@@ -9,7 +9,7 @@ public partial class Order
 
     public string Name { get; set; } = null!;
 
-    public string Datecreation { get; set; } = null!;
+    public DateTime? Datecreation { get; set; } = null!;
 
     public bool Status { get; set; }
 
@@ -17,5 +17,5 @@ public partial class Order
 
     public int CustomerId { get; set; }
 
-    public virtual Customer Customer { get; set; } = null!;
+    public virtual Customer? Customer { get; set; } = null!;
 }

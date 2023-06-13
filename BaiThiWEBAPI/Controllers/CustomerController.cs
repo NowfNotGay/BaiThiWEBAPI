@@ -8,11 +8,13 @@ namespace BaiThiWEBAPI.Controllers;
 [ApiController]
 public class CustomerController : ControllerBase
 {
-    private IServiceCRUD<Customer> _customerRepository;
+    private readonly IServiceCRUD<Customer> _customerRepository;
+    private readonly IOrderService _orderService;
 
-    public CustomerController(IServiceCRUD<Customer> customerRepository)
+    public CustomerController(IServiceCRUD<Customer> customerRepository, IOrderService orderService)
     {
         _customerRepository = customerRepository;
+        _orderService = orderService;
     }
 
     [Consumes("application/json")]
@@ -67,6 +69,10 @@ public class CustomerController : ControllerBase
     {
         try
         {
+            if(_orderService.CountOrderByCustomerId(id) > 0)
+            {
+                return BadRequest();
+            }
             return Ok(_customerRepository.Delete(id));
         }
         catch

@@ -1,11 +1,18 @@
+using BaiThiWEBAPI.Converters;
 using BaiThiWEBAPI.Models;
 using BaiThiWEBAPI.Service.ClassImplement;
 using BaiThiWEBAPI.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
+builder.Services.AddControllers().AddJsonOptions(option =>
+{
+    option.JsonSerializerOptions.Converters.Add(new DateConverter());
+});
 builder.Services.AddScoped<IServiceCRUD<Customer>, ServiceCustomerCRUD>();
 builder.Services.AddScoped<IServiceCRUD<Order>, ServiceOrderCRUD>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 
 builder.Services.AddScoped<DatabaseContext>();
 // Add services to the container.
