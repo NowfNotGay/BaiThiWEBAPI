@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace BaiThiWEBAPI.Controllers;
 [Route("api/[controller]")]
 [ApiController]
-public class OrderControlller : ControllerBase
+public class OrderController : ControllerBase
 {
     private readonly IServiceCRUD<Order> _orderRepository;
     private readonly IOrderService _orderService;
 
-    public OrderControlller(IServiceCRUD<Order> orderRepository, IOrderService orderService)
+    public OrderController(IServiceCRUD<Order> orderRepository, IOrderService orderService)
     {
         _orderRepository = orderRepository;
         _orderService = orderService;
